@@ -1,0 +1,24 @@
+apply plugin: 'java'
+apply plugin: 'application'
+
+group 'ru.textanalysis'
+version '0.1-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+[compileJava, compileTestJava]*.options*.encoding = 'UTF-8'
+mainClassName = 'Example'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    compile.extendsFrom morphologicalStructures
+    compile.extendsFrom templateWrapperClasses
+}
+
+dependencies {
+    compile project(':MorphologicalStructures')
+    compile  project(':TemplateWrapperClasses')
+}
