@@ -55,14 +55,20 @@ public class Rule {
         mainWord.applyConsumer(mainOmoForm -> {
             if (typeOfSpeechsForMainWord.contains(mainOmoForm.getToS())) {
                 depWord.applyConsumer(depOmoForm -> {
-                    if (typeOfSpeechsForDependentWord.contains(depOmoForm.getToS())) {
+                    if (!depOmoForm.haveMain() && typeOfSpeechsForDependentWord.contains(depOmoForm.getToS())) {
                         mainOmoForm.addDependentCursors(new CursorToFormInWord(depWord, depOmoForm.hashCode()));
                         depOmoForm.setMainCursors(new CursorToFormInWord(mainWord, mainOmoForm.hashCode()));
                         isCompatibility.set(true);
                     }
                 });
+//                if (isCompatibility.get()) {
+//                    depWord.cleanNotRelation();
+//                }
             }
         });
+//        if (isCompatibility.get()) {
+//            mainWord.cleanNotRelation();
+//        }
         return isCompatibility.get();
     }
 
