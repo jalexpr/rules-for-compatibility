@@ -1,7 +1,7 @@
-package ru.textanalysis.tfwwt.rules.compatibility;
+package ru.textanalysis.tawt.rfc;
 
-import ru.textanalysis.tfwwt.morphological.structures.internal.sp.CursorToFormInWord;
-import ru.textanalysis.tfwwt.morphological.structures.internal.sp.WordSP;
+import ru.textanalysis.tawt.ms.internal.sp.CursorToFormInWord;
+import ru.textanalysis.tawt.ms.internal.sp.WordSP;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -57,7 +57,7 @@ public class Rule {
                 depWord.applyConsumer(depOmoForm -> {
                     if (typeOfSpeechsForDependentWord.contains(depOmoForm.getToS())) {
                         mainOmoForm.addDependentCursors(new CursorToFormInWord(depWord, depOmoForm.hashCode()));
-                        depOmoForm.addMainCursors(new CursorToFormInWord(mainWord, mainOmoForm.hashCode()));
+                        depOmoForm.setMainCursors(new CursorToFormInWord(mainWord, mainOmoForm.hashCode()));
                         isCompatibility.set(true);
                     }
                 });
