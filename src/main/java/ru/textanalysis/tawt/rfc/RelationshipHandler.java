@@ -12,10 +12,22 @@ public class RelationshipHandler {
 
     public RelationshipHandler() {
         this.rules = new ArrayList<>();
+        rules.add(new Rule(MorfologyParameters.TypeOfSpeech.NOUNPRONOUN,
+                MorfologyParameters.TypeOfSpeech.NOUN,
+                (byte) 0,
+                (byte) 127));
+        rules.add(new Rule(MorfologyParameters.TypeOfSpeech.NOUN,
+                MorfologyParameters.TypeOfSpeech.NOUNPRONOUN,
+                (byte) 0,
+                (byte) 2));
         rules.add(new Rule(MorfologyParameters.TypeOfSpeech.NOUN,
                 MorfologyParameters.TypeOfSpeech.VERB,
                 (byte) 0,
                 (byte) 2));
+        rules.add(new Rule(MorfologyParameters.TypeOfSpeech.VERB,
+                MorfologyParameters.TypeOfSpeech.NOUN,
+                (byte) 0,
+                (byte) 4));
     }
 
     public boolean establishRelation(int distance, WordSP leftWord, WordSP rightWord) {
