@@ -4,21 +4,22 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>rfc</artifactId>
-    <name>rules-for-compatibility</name>
-    <version>${version.tawt.rfc}</version>
+    <name>TAWT Rules For Compatibility</name>
+    <artifactId>rules-for-compatibility</artifactId>
+    <packaging>jar</packaging>
+    <version>${version.tawt.rules-for-compatibility}</version>
 
     <parent>
-        <artifactId>tawt-parent</artifactId>
         <groupId>ru.textanalysis.tawt</groupId>
-        <version>0.0.1</version>
+        <artifactId>tawt-parent</artifactId>
+        <version>0.0.2</version>
     </parent>
 
     <dependencies>
         <!--        TAWT-->
         <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>ms</artifactId>
+            <artifactId>morphological-structures</artifactId>
         </dependency>
 
         <!--            Logger-->
