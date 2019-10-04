@@ -9,6 +9,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class RelationshipHandler {
     private final List<Rule> rules;
+    private final List<Rule> rulesForPretext;
 
     public RelationshipHandler() {
         this.rules = new ArrayList<>();
@@ -28,6 +29,12 @@ public class RelationshipHandler {
                 MorfologyParameters.TypeOfSpeech.NOUN,
                 (byte) 0,
                 (byte) 4));
+
+        this.rulesForPretext = new ArrayList<>();
+        rules.add(new Rule(MorfologyParameters.TypeOfSpeech.PRETEXT,
+                MorfologyParameters.TypeOfSpeech.NOUN,
+                (byte) 0,
+                (byte) 127));
     }
 
     public boolean establishRelation(int distance, WordSP leftWord, WordSP rightWord) {
@@ -38,5 +45,10 @@ public class RelationshipHandler {
             }
         });
         return isCompatibility.get();
+    }
+
+    //пробегаемся по всем словам, которые стоят правея
+    public boolean establishRelationForPretext(WordSP pretext, WordSP word) {
+        return rulesForPretext.stream().filter(rule -> rule.isCompatibility(1, pretext, word)).count() > 0;
     }
 }
